@@ -4,23 +4,25 @@ name: Python Build
 on:
   push:
     branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-    - name: Set up Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.12'
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.12'
 
-    - name: Install dependencies and build
-      run: |
-     #   cd src/recommendation
-        python -m pip install --upgrade pip
-        pip install build
-        python -m build
+      - name: Install dependencies and build
+        run: |
+          cd src/recommendation
+          python -m pip install --upgrade pip
+          pip install build
+          python -m build
